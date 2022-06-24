@@ -43,7 +43,7 @@ ORDER BY 1 DESC
 
 ![image](https://user-images.githubusercontent.com/25832508/175531239-e5358c23-846c-47b0-822c-3faec363db60.png)
 
-Na primeira coluna estão a quantidade de vezes que o registro se repete e na segunda a coordenada x e y agrupada em uma só. Se na primeira coluna o valor for maior que 1, logo o valor se repetiu. Nesse caso, para 10000 registros 62 estão repetidos.
+Na primeira coluna está a quantidade de vezes que o registro se repete e na segunda a coordenada x e y agrupada em uma só. Se na primeira coluna o valor for maior que 1, logo o valor se repetiu. Nesse caso, para 10000 registros 62 estão repetidos.
 
 ![image](https://user-images.githubusercontent.com/25832508/175531552-97d37b5f-b3a5-4fed-8b0a-f8c0a87b04a4.png)
 
