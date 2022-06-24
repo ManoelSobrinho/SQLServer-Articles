@@ -47,7 +47,7 @@ Na primeira coluna está a quantidade de vezes que o registro se repete e na seg
 
 ![image](https://user-images.githubusercontent.com/25832508/175531552-97d37b5f-b3a5-4fed-8b0a-f8c0a87b04a4.png)
 
-## 5ª Etapa: Eliminando os valores repitidos
+## 5ª Etapa: Eliminando os valores repetidos
 
 ```
 WITH CTE AS 
