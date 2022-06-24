@@ -32,8 +32,14 @@ EXEC SP_GerarCoordenada 100, 999
 GO 10000
 ```
 
+## 4ª Etapa: Verificando se existem registros iguais
+
+```
 SELECT COUNT(*) AS Quantidade, CONVERT(CHAR,x) + CONVERT(CHAR,y) AS Registro
 FROM Coordenadas
 GROUP BY CONVERT(CHAR,x) + CONVERT(CHAR,y) 
 ORDER BY 1 DESC
 ```
+
+![image](https://user-images.githubusercontent.com/25832508/175531239-e5358c23-846c-47b0-822c-3faec363db60.png)
+
