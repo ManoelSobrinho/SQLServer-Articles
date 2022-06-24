@@ -23,3 +23,12 @@ CREATE TABLE Coordenadas (
 	y INT
 )
 ```
+
+## 3ª Etapa: Inserindo 10000 registros na tabela
+
+```
+INSERT INTO coordenadas
+EXEC SP_GerarCoordenada 100, 999
+GO 10000
+```
+
