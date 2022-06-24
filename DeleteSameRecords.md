@@ -5,12 +5,9 @@ Eliminar registros iguais em uma tabela.
 ## 1ª Etapa: Criando uma procedure que gera um par de valores aleatórios entre dois números <a name="introduction"></a>
 
 ```
-USE [Teste]
-GO
-
 CREATE PROCEDURE [dbo].[SP_GerarCoordenada]
-	@maior INT,
-	@menor INT
+	@menor INT,
+	@maior INT
 AS
 	SET @menor = 100 ---- menor número
 	SET @maior = 999 ---- maior número
