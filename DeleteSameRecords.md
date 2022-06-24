@@ -73,4 +73,4 @@ ORDER BY 1 DESC
 
 ![image](https://user-images.githubusercontent.com/25832508/175532357-12c5b82d-3c20-4e2f-8da6-e92872abfa85.png)
 
-OBS: Os mesmo procedimento pode ser feito para valores que se repetem mais de 2 vezes, para um teste com uma quantidade maior de registros repetidos basta apenas aumentar a quantidade de registros inseridos pela ```PROCEDURE``` ou inserir registros em um intervalo menor. 
+OBS: Os mesmo procedimento pode ser feito para registros que se repetem mais de 2 vezes, para um teste com uma quantidade maior de registros repetidos basta apenas aumentar a quantidade de registros inseridos pela ```PROCEDURE``` ou inserir registros em um intervalo menor. 
