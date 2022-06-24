@@ -32,3 +32,8 @@ EXEC SP_GerarCoordenada 100, 999
 GO 10000
 ```
 
+SELECT COUNT(*) AS Quantidade, CONVERT(CHAR,x) + CONVERT(CHAR,y) AS Registro
+FROM Coordenadas
+GROUP BY CONVERT(CHAR,x) + CONVERT(CHAR,y) 
+ORDER BY 1 DESC
+```
