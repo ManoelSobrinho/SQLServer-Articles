@@ -15,7 +15,11 @@ AS
 GO
 ```
 
+## 2ª Etapa: Criando uma tabela para armazenar pares de coordenadas
+
+```
 CREATE TABLE Coordenadas (
 	x INT,
 	y INT
 )
+```
