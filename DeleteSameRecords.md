@@ -2,4 +2,4 @@
 
 Eliminar registros iguais em uma tabela.
 
-## Trabalho 1: Rasterização de Linhas <a name="introduction"></a>
+## 1ª Etapa: Criando uma procedure que gera um par de valores aleatórios entre dois números <a name="introduction"></a>
