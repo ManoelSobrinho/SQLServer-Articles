@@ -2,7 +2,7 @@
 
 Eliminar registros iguais em uma tabela.
 
-## 1ª Etapa: Criando uma procedure que gera um par de valores aleatórios entre dois números <a name="introduction"></a>
+## 1ª Etapa: Criando uma procedure que gera um par de valores aleatórios entre dois números
 
 ```
 CREATE PROCEDURE [dbo].[SP_GerarCoordenada]
@@ -14,3 +14,8 @@ AS
 	SELECT ROUND(((@maior - @menor -1) * RAND() + @menor), 0) AS x, ROUND(((@maior - @menor -1) * RAND() + @menor), 0) AS y
 GO
 ```
+
+CREATE TABLE Coordenadas (
+	x INT,
+	y INT
+)
