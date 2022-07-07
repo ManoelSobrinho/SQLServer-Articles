@@ -36,7 +36,7 @@ WHERE Is_Masked = 1;
 
 ![image](https://user-images.githubusercontent.com/25832508/177662963-12803e69-ec4f-4ced-9391-0e599fcfedfa.png)
 
-Como resultado da consulta temos o retorno para os campos que estão mascadados e em qual tabela
+Como resultado da consulta temos o retorno dos campos que estão mascadados e em qual tabela
 
 # 3) Inserindo os mesmos dados em ambas tabelas
 
