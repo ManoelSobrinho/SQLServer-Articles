@@ -117,7 +117,7 @@ REVERT;
 
 ![image](https://user-images.githubusercontent.com/25832508/177663798-07e5128e-b9c8-49c5-93b1-f2f4cf829bae.png)
 
-# 9) Retirando a permissão a um usuário ver os dados de uma tabela mascarada sem a máscara.
+# 9) Retirando a permissão de um usuário ver os dados de uma tabela mascarada sem a máscara.
 
 ```
 REVOKE UNMASK TO Teste; 
