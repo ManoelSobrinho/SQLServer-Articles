@@ -2,6 +2,8 @@
 
 # 1) Criando as tabelas
 
+Serão criadas duas tabelas, uma que não será mascarada e outra que será.
+
 ```
 CREATE TABLE Clientes (
 	ID_Cliente INT PRIMARY KEY IDENTITY(1,1),
