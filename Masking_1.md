@@ -24,7 +24,7 @@ CREATE TABLE Mask_Clientes (
 )
 ```
 
-# Verificando se existe alguma tabela mascarada e quais campos estão mascarados
+# 2) Verificando se existe alguma tabela mascarada e quais campos estão mascarados
 
 ```
 SELECT SMC.Name, ST.Name AS Table_Name, SMC.Is_Masked, SMC.Masking_Function  
@@ -38,7 +38,7 @@ WHERE Is_Masked = 1;
 
 Como resultado da consulta temos o retorno para os campos que estão mascadados e em qual tabela
 
-# Inserindo os mesmos dados em ambas tabelas
+# 3) Inserindo os mesmos dados em ambas tabelas
 
 ```
 INSERT INTO Clientes(Nome, Sobrenome, Telefone, Email)
@@ -60,7 +60,86 @@ VALUES
 	('Cátia','Cardozo','8844-0124','ccardozo@gmail.com')
 ```
 
+# 4) Fazendo um SELECT na tabela Mask_Clientes
 
+```
+SELECT * FROM Mask_Clientes
+```
 
+![image](https://user-images.githubusercontent.com/25832508/177663118-95c85844-1e74-49db-bb56-c585e1471df3.png)
 
+É possível ver que nenhum campo está mascarado, isso pelo fato de o login que estou utilizando tem permissões suficientes para ver dados até mesmo em uma tabela mascarada. Logo, vamos criar um usuário que não precise de login para ver se o mascaramento realment está funcionando.
+
+# 5) Criando um usuário para testar resultado do mascaramento
+
+Criando o usuário com permissão para fazer SELECT nas duas tabelas.
+
+```
+CREATE USER Teste WITHOUT LOGIN;  
+GRANT SELECT ON Clientes TO Teste;  
+GRANT SELECT ON Mask_Clientes TO Teste;
+```
+
+# 6) SELECT utilizando o usuário criado
+
+```
+EXECUTE AS USER = 'Teste';  
+SELECT * FROM Clientes; 
+SELECT * FROM Mask_Clientes; 
+REVERT; 
+```
+
+![image](https://user-images.githubusercontent.com/25832508/177663468-f86d23de-342e-4a3d-828d-37202ca99d2a.png)
+
+É possível notar que realmente o mascaramento funcionou.
+
+Agora que vimos o funcionamento, podemos fazer alterações caso necessário.
+
+# 7) Alterando ou adicionando o mascaramento de uma coluna
+
+```
+ALTER TABLE Mask_Clientes  
+ALTER COLUMN Sobrenome VARCHAR(20) MASKED WITH (FUNCTION = 'default()'); 
+```
+
+![image](https://user-images.githubusercontent.com/25832508/177663666-212fc23c-04d3-40e8-81d8-2e7b0b025fa5.png)
+
+É possível notar que agora a coluna Sobrenome só mostra x para qualquer registro.
+
+# 8) Dando permissão a um usuário ver os dados de uma tabela mascarada sem a máscara
+
+```
+GRANT UNMASK TO Teste;  
+EXECUTE AS USER = 'Teste';  
+SELECT * FROM Mask_Clientes;  
+REVERT;
+```
+
+![image](https://user-images.githubusercontent.com/25832508/177663798-07e5128e-b9c8-49c5-93b1-f2f4cf829bae.png)
+
+# 9) Retirando a permissão a um usuário ver os dados de uma tabela mascarada sem a máscara.
+
+```
+REVOKE UNMASK TO Teste; 
+EXECUTE AS USER = 'Teste';  
+SELECT * FROM Mask_Clientes;  
+REVERT;
+```
+
+![image](https://user-images.githubusercontent.com/25832508/177663907-cf843946-dd9e-41ba-8a7a-352806c3e8a3.png)
+
+# 10) Eliminando a máscara de uma coluna mascarada
+
+```
+ALTER TABLE Mask_Clientes   
+ALTER COLUMN Sobrenome DROP MASKED; 
+```
+
+```
+EXECUTE AS USER = 'Teste';  
+SELECT * FROM Mask_Clientes;  
+REVERT;
+```
+
+![image](https://user-images.githubusercontent.com/25832508/177664029-698cfbb6-4b47-4b37-8ad7-c0a0aa2f0b38.png)
 
