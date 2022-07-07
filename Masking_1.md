@@ -68,7 +68,7 @@ SELECT * FROM Mask_Clientes
 
 ![image](https://user-images.githubusercontent.com/25832508/177663118-95c85844-1e74-49db-bb56-c585e1471df3.png)
 
-É possível ver que nenhum campo está mascarado, isso pelo fato de o login que estou utilizando tem permissões suficientes para ver dados até mesmo em uma tabela mascarada. Logo, vamos criar um usuário que não precise de login para ver se o mascaramento realment está funcionando.
+É possível ver que nenhum campo está mascarado, isso pelo fato de o usuário que estou utilizando tem permissões suficientes para ver dados até mesmo em uma tabela mascarada. Logo, vamos criar um usuário que não precise de login para ver se o mascaramento realment está funcionando.
 
 # 5) Criando um usuário para testar resultado do mascaramento
 
