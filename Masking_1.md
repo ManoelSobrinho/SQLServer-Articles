@@ -106,7 +106,7 @@ ALTER COLUMN Sobrenome VARCHAR(20) MASKED WITH (FUNCTION = 'default()');
 
 É possível notar que agora a coluna Sobrenome só mostra x para qualquer registro.
 
-# 8) Dando permissão a um usuário ver os dados de uma tabela mascarada sem a máscara
+# 8) Dando permissão para um usuário ver os dados de uma tabela mascarada sem a máscara
 
 ```
 GRANT UNMASK TO Teste;  
