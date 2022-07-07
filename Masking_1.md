@@ -23,3 +23,25 @@ CREATE TABLE Mask_Clientes (
 	Email VARCHAR(20) MASKED WITH (FUNCTION = 'email()') NULL
 )
 ```
+
+# Inserindo os mesmos dados em ambas tabelas
+
+```
+INSERT INTO Clientes(Nome, Sobrenome, Telefone, Email)
+VALUES
+	('Pedro','Cardozo','8899-7788','pedro.ca@gmail.com'),
+	('João','Paulo','9878-6699','jpaulo@outlook.com'),
+	('Maria','Clara','9877-1222','mclara@gmail.com'),
+	('Francisco','Carlos','9969-9632','fcarlos@outlook.com'),
+	('Cátia','Cardozo','8844-0124','ccardozo@gmail.com')
+```
+
+```
+INSERT INTO Mask_Clientes(Nome, Sobrenome, Telefone, Email)
+VALUES
+	('Pedro','Cardozo','8899-7788','pedro.ca@gmail.com'),
+	('João','Paulo','9878-6699','jpaulo@outlook.com'),
+	('Maria','Clara','9877-1222','mclara@gmail.com'),
+	('Francisco','Carlos','9969-9632','fcarlos@outlook.com'),
+	('Cátia','Cardozo','8844-0124','ccardozo@gmail.com')
+```
