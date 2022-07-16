@@ -4,7 +4,7 @@ Eliminar registros iguais em uma tabela.
 
 ## 1ª Etapa: Criando uma procedure que gera um par de valores aleatórios entre dois números
 
-```
+```TSQL
 CREATE PROCEDURE [dbo].[SP_GerarCoordenada]
 	@menor INT,
 	@maior INT
@@ -17,7 +17,7 @@ GO
 
 ## 2ª Etapa: Criando uma tabela para armazenar pares de coordenadas
 
-```
+```TSQL
 CREATE TABLE Coordenadas (
 	x INT,
 	y INT
@@ -26,7 +26,7 @@ CREATE TABLE Coordenadas (
 
 ## 3ª Etapa: Inserindo 10000 registros na tabela
 
-```
+```TSQL
 INSERT INTO coordenadas
 EXEC SP_GerarCoordenada 100, 999
 GO 10000
@@ -34,7 +34,7 @@ GO 10000
 
 ## 4ª Etapa: Verificando se existem registros iguais
 
-```
+```TSQL
 SELECT COUNT(*) AS Quantidade, CONVERT(CHAR,x) + CONVERT(CHAR,y) AS Registro
 FROM Coordenadas
 GROUP BY CONVERT(CHAR,x) + CONVERT(CHAR,y) 
@@ -49,7 +49,7 @@ Na primeira coluna está a quantidade de vezes que o registro se repete e na seg
 
 ## 5ª Etapa: Eliminando os valores repetidos
 
-```
+```TSQL
 WITH CTE AS 
 (SELECT x, y, ROW_NUMBER() OVER(PARTITION BY x, y ORDER BY x DESC) Linha
 FROM Coordenadas)
@@ -64,7 +64,7 @@ Logo, como existiam 62 registros iguais, na mensagem de saída teremos 62 regist
 
 Agora basta novamente verificar se existem ainda valores repetidos
 
-```
+```TSQL
 SELECT COUNT(*) AS Quantidade, CONVERT(CHAR,x) + CONVERT(CHAR,y) AS Registro
 FROM Coordenadas
 GROUP BY CONVERT(CHAR,x) + CONVERT(CHAR,y) 
