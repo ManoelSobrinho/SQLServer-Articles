@@ -124,7 +124,7 @@ INSERT INTO [dbo].[Pessoas] (Nome)
 		('Carla')
 ```
 
-Em seguida vamos verificar se algo foi anterado na tabela [cdc].[dbo_Pessoas_CT]
+Em seguida vamos verificar se algo foi alterado na tabela [cdc].[dbo_Pessoas_CT]
 
 ```TSQL
 SELECT * FROM [cdc].[dbo_Pessoas_CT]
