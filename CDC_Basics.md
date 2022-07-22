@@ -134,7 +134,7 @@ SELECT * FROM [cdc].[dbo_Pessoas_CT]
 <img src="https://user-images.githubusercontent.com/25832508/180339837-ec2ff4ad-cac3-438f-b555-e12abb2086b9.png">
 </p>
 
-Agora vamos fazer um DELETE e um ALTER na [dbo].[Pessoas] e novamente verificar a tabela do CDC.
+Agora vamos fazer um UPDATE e um DELETE na [dbo].[Pessoas] e novamente verificar a tabela do CDC.
 
 ```TSQL
 UPDATE [dbo].[Pessoas]
