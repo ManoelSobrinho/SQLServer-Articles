@@ -168,6 +168,6 @@ Podemos ver que ao inserir na tabela todos os valores da coluna __$operation sã
 
 Na coluna __$command_id tivemos valores de 1 até 5, pois foram feitas 5 insersões. (Bloco Vermelho)
 
-Ao alterar dados tivemos na coluna __$operation os valores 3 e 4. 3 indicando o valor antigo e 4 o valor alterado. É possível ver isso pela coluna ID_Pessoa, que é 5 para amboos os registros. (Bloco Amarelo)
+Ao alterar dados tivemos na coluna __$operation os valores 3 e 4. 3 indicando o valor antigo e 4 o valor alterado/novo. É possível ver isso pela coluna ID_Pessoa, que é 5 para ambos os registros. (Bloco Amarelo)
 
 Por fim, ao deletar, podemos que que na coluna __$operation obtivemos o valor 1, que indica que aquele registro foi deletado. (Bloco Verde)
