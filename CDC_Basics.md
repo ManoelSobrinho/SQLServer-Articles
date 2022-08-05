@@ -19,7 +19,7 @@ FROM sys.databases
 <img src="https://user-images.githubusercontent.com/25832508/180337386-afe785d2-234b-49cb-bb0b-3d1f161cf540.png">
 </p>
 
-# 1) Criando uma database e habilitando o CDC.
+# 1) Criando uma database e habilitando o CDC
 
 ```TSQL
 CREATE DATABASE Teste_CDC
