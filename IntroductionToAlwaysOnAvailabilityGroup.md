@@ -56,6 +56,30 @@ Só um nó (node) pode ser primário, os demais são secundários.
 
 Esse modo de alta disponibilidade utiliza um listener.
 
+# 6) Ouvinte de grupo de disponibilidade (Listener)
 
+Um ouvinte de grupo de disponibilidade ou listener é um nome de rede virtual que permite a conexão com um banco de dados de um grupo de disponibilidade, esse listener pemite a conexão sem que o usuário precise saber do nome da instância física do SQL Server.
 
+### Por que o listener é tão importante?
 
+Primeiro, ele roteia o tráfego da conexão do usuário, dessa forma, em casos de failover (será abordado mais à frente) a conexão não é comprometida.
+
+### Como assim?
+
+Imagine um cenário onde você tem dois servidores que fazem parte de um grupo de disponibilidade onde não existe o listener, nesse caso as conexões dos usuários serão direcionadas para o endereço de IP do servidor SQL Server. 
+
+Exemplificando, se você tem um servidor com IP 100.100.10.1 (primário) e outro 100.100.10.2 (secundário) e um usuário/aplicação tem o apontamento direcionado para o servidor de primário, caso ocorra um failover, o servidor 100.100.10.2 passará a ser primário e o servidor 100.100.10.1 secundário. Neste cenário todas as conexões que estão apontadas para o servidor 100.100.10.1 não se conectarão com o banco de dados.
+
+Tendo isso em vista é importante frisar que o listener sempre direciona a conexão para a base primária.
+
+# 7) Failover
+
+Um failover ocorre quando as funções de primária e secundária são permutadas. Se temos um servidor A que é primário e um servidor B que é secundário e ocorre o failover, o servidor B passa a ser o primário e o servidor A o secundário.
+
+Existem três formas de failover:
+
+Failover manual: O administrador de banco de dados executa um comando para que seja feita a transcrição de função entre as réplicas. Ambas as réplicas devem estar no modo síncrono.
+
+Failover automático: A transcrição entre funções é ocorre devido a uma falha. Ambas as réplicas devem estar no modo síncrono.
+
+Failover forçado: É semelhante ao failover manual porém com as réplicas no modo assíncrono.
