@@ -38,13 +38,13 @@ Se a comunicação entre duas réplicas é no modo síncrono, precisamos que ela
 
 Já a réplica assíncrona pode ou deve estar situada em uma região diferente.
 
-### Pode ou deve?
+#### Pode ou deve?
 
 Imagine que seus servidores estão hospedados em algum serviço de nuvem, neste caso pode ocorrer de acontecer algum problema e indisponibilizar seu servidor em determinada região, nesse caso, é importante ter uma réplica hospedada em uma região distante para não haver perda ou indisponibilidade de dados.
 
 Bancos de dados são usados para processos de equipes diferentes e com objetivos distintos dentro de uma empresa, então é muito provável que serão extraídos relatórios desse banco de dados, relatórios esses muito pesados que podem gerar impacto no banco de dados, essa é uma das finalidades da utilização do modo assíncrono. Imagine uma extração em massa de dados para gerar um relatório feita em uma réplica secundária de modo síncrono, se o servidor de banco de dados não tiver recursos suficientes para retornar aquela consulta de forma rápida você terá um problema na replicação, pois como falado anteriormente, no modo síncrono a réplica primária depende da confirmação da secundária.
 
-# 5) Funcionamento básico
+## 5) Funcionamento básico
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25832508/183068404-ecc869c9-9f9b-48ff-91bb-567fca922020.png">
@@ -56,7 +56,7 @@ Só um nó (node) pode ser primário, os demais são secundários.
 
 Esse modo de alta disponibilidade utiliza um listener.
 
-# 6) Ouvinte de grupo de disponibilidade (Listener)
+## 6) Ouvinte de grupo de disponibilidade (Listener)
 
 Um ouvinte de grupo de disponibilidade ou listener é um nome de rede virtual que permite a conexão com um banco de dados de um grupo de disponibilidade, esse listener pemite a conexão sem que o usuário precise saber do nome da instância física do SQL Server.
 
@@ -72,7 +72,7 @@ Exemplificando, se você tem um servidor com IP 100.100.10.1 (primário) e outro
 
 Tendo isso em vista é importante frisar que o listener sempre direciona a conexão para a base primária.
 
-# 7) Failover
+## 7) Failover
 
 Um failover ocorre quando as funções de primária e secundária são permutadas. Se temos um servidor A que é primário e um servidor B que é secundário e ocorre o failover, o servidor B passa a ser o primário e o servidor A o secundário.
 
