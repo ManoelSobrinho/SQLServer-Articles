@@ -1,4 +1,4 @@
-### Funcionamento básico do Change Data Capture (CDC)
+# Funcionamento básico do Change Data Capture (CDC)
 
 É muito importante que um ambiente de banco de dados seja monitorado e auditado, para isso existem muitos conceitos e ferramentas, e uma delas é o Change Data Capture.
 
@@ -6,7 +6,7 @@
 
 De uma forma bem simplificada, o Change Data Capture é um processo que verifica a alteração de dados. No SQL Server existe uma forma de implementar essa funcionalidade desde a versão do SQL Server 2008. Uma grande vantagem de implementar o Change Data Capture é a facilidade, vamos ver na prática.
 
-# 1) Verificando em quais databases o CDC está habilitado.
+## 1) Verificando em quais databases o CDC está habilitado.
 
 Para verificar é simples, basta utilizar o comando:
 
@@ -19,7 +19,7 @@ FROM sys.databases
 <img src="https://user-images.githubusercontent.com/25832508/180337386-afe785d2-234b-49cb-bb0b-3d1f161cf540.png">
 </p>
 
-# 1) Criando uma database e habilitando o CDC
+## 1) Criando uma database e habilitando o CDC
 
 ```TSQL
 CREATE DATABASE Teste_CDC
@@ -98,7 +98,7 @@ Também é possível ver que o schema CDC foi criado.
 <img src="https://user-images.githubusercontent.com/25832508/180339141-cc54064c-98da-4612-ad15-bebc10604fea.png">
 </p>
 
-# 2) Alterando dados e verificando se o CDC está funcionando
+## 2) Alterando dados e verificando se o CDC está funcionando
 
 Inicialmente a tabela do CDC estará vazia.
 
@@ -158,7 +158,7 @@ Como resultado na tabela CDC tivemos:
 <img src="https://user-images.githubusercontent.com/25832508/180340354-da1ea6a7-204e-45db-97b1-fc98838552cb.png">
 </p>
 
-# 3) Explicando o básico para entender uma tabela de CDC
+## 3) Explicando o básico para entender uma tabela de CDC
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25832508/180341310-4c2cb9e6-701b-45a6-8bec-513b86bbc25f.png">
