@@ -1,6 +1,6 @@
-### Mascaramento utilizando funções do SQL Server
+# Mascaramento utilizando funções do SQL Server
 
-# 1) Criando as tabelas
+## 1) Criando as tabelas
 
 Serão criadas duas tabelas, uma que não será mascarada e outra que será.
 
@@ -24,7 +24,7 @@ CREATE TABLE Mask_Clientes (
 )
 ```
 
-# 2) Verificando se existe alguma tabela mascarada e quais campos estão mascarados
+## 2) Verificando se existe alguma tabela mascarada e quais campos estão mascarados
 
 ```TSQL
 SELECT SMC.Name, ST.Name AS Table_Name, SMC.Is_Masked, SMC.Masking_Function  
@@ -40,7 +40,7 @@ WHERE Is_Masked = 1;
 
 Como resultado da consulta temos o retorno dos campos que estão mascadados e em qual tabela
 
-# 3) Inserindo os mesmos dados em ambas tabelas
+## 3) Inserindo os mesmos dados em ambas tabelas
 
 ```TSQL
 INSERT INTO Clientes(Nome, Sobrenome, Telefone, Email)
@@ -62,7 +62,7 @@ VALUES
 	('Cátia','Cardozo','8844-0124','ccardozo@gmail.com')
 ```
 
-# 4) Fazendo um SELECT na tabela Mask_Clientes
+## 4) Fazendo um SELECT na tabela Mask_Clientes
 
 ```TSQL
 SELECT * FROM Mask_Clientes
@@ -74,7 +74,7 @@ SELECT * FROM Mask_Clientes
 
 É possível ver que nenhum campo está mascarado, isso pelo fato do usuário que estou utilizando ter permissões suficientes para ver dados até mesmo em uma tabela mascarada. Logo, vamos criar um usuário que não precise de login para ver se o mascaramento realmente está funcionando.
 
-# 5) Criando um usuário para testar resultado do mascaramento
+## 5) Criando um usuário para testar resultado do mascaramento
 
 Criando o usuário com permissão para fazer SELECT nas duas tabelas.
 
@@ -84,7 +84,7 @@ GRANT SELECT ON Clientes TO Teste;
 GRANT SELECT ON Mask_Clientes TO Teste;
 ```
 
-# 6) SELECT utilizando o usuário criado
+## 6) SELECT utilizando o usuário criado
 
 ```TSQL
 EXECUTE AS USER = 'Teste';  
@@ -101,7 +101,7 @@ REVERT;
 
 Agora que vimos o funcionamento, podemos fazer alterações caso necessário.
 
-# 7) Alterando ou adicionando o mascaramento de uma coluna
+## 7) Alterando ou adicionando o mascaramento de uma coluna
 
 ```TSQL
 ALTER TABLE Mask_Clientes  
@@ -114,7 +114,7 @@ ALTER COLUMN Sobrenome VARCHAR(20) MASKED WITH (FUNCTION = 'default()');
 
 É possível notar que agora a coluna Sobrenome só mostra x para qualquer registro.
 
-# 8) Dando permissão para um usuário ver os dados de uma tabela mascarada sem a máscara
+## 8) Dando permissão para um usuário ver os dados de uma tabela mascarada sem a máscara
 
 ```TSQL
 GRANT UNMASK TO Teste;  
@@ -127,7 +127,7 @@ REVERT;
 <img src="https://user-images.githubusercontent.com/25832508/177663798-07e5128e-b9c8-49c5-93b1-f2f4cf829bae.png">
 </p>
 
-# 9) Retirando permissão de um usuário ver os dados de uma tabela mascarada sem a máscara.
+## 9) Retirando permissão de um usuário ver os dados de uma tabela mascarada sem a máscara.
 
 ```TSQL
 REVOKE UNMASK TO Teste; 
@@ -140,7 +140,7 @@ REVERT;
 <img src="https://user-images.githubusercontent.com/25832508/177663907-cf843946-dd9e-41ba-8a7a-352806c3e8a3.png">
 </p>
 
-# 10) Eliminando a máscara de uma coluna mascarada
+## 10) Eliminando a máscara de uma coluna mascarada
 
 ```TSQL
 ALTER TABLE Mask_Clientes   
