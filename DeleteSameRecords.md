@@ -1,4 +1,4 @@
-### Objetivo
+# Objetivo
 
 Eliminar registros iguais em uma tabela.
 
