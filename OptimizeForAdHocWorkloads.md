@@ -1,6 +1,6 @@
 # Introdução
 
-Este artigo tem como finalidade demonstrar como o parâmetro Optimize for Ad Hoc Workloads pode ser configurado na sua instância do SQL Server, qual sua utilidade e o que a não configuração desse parâmetro pode causar.
+Este artigo tem como finalidade demonstrar como o parâmetro Optimize for Ad Hoc Workloads pode ser configurado na sua instância do SQL Server, qual sua utilidade e o que a não configuração desse pode causar.
 
 # O que é uma Ad Hoc query?
 
