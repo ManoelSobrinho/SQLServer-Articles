@@ -22,5 +22,5 @@ A imagem a seguir mostra de uma forma geral o funcionamento de uma consulta qual
 
 
 
-![img1](https://user-images.githubusercontent.com/25832508/198142735-2f01a60c-fad4-4776-ab37-a85a908b1e5c.png)
+
 
