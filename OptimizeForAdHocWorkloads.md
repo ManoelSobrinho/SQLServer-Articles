@@ -32,7 +32,7 @@ Agora vamos ver o mesmo cenário só que com o parâmetro habilitado.
 
 ## Quais as diferenças?
 
-Ainda temos a mesma quantidade de queries e a mesma quantidade de planos, só que diferente de antes, agora temos planos menores, é esse é o objetivo do Optimize for Ad Hoc Workload, diminuir o tamanho dos planos que serão armazenados no Plan cache.
+Ainda temos a mesma quantidade de queries e a mesma quantidade de planos, só que diferente de antes, agora temos planos menores, é esse é o objetivo do Optimize for Ad Hoc Workloads, diminuir o tamanho dos planos que serão armazenados no Plan cache.
 
 # Como habilitar 
 
