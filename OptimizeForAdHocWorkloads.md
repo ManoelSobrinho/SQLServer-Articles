@@ -16,7 +16,7 @@ A imagem a seguir mostra de uma forma geral o funcionamento de uma consulta qual
 
 # Parâmetro Optimize for Ad Hoc Workloads
 
-Agora vamos entender o que o Optimize for Ad Hoc Workload faz; Observe a imagem abaixo onde temos a representação de quando o parâmetro não está habilitado.
+Agora vamos entender o que o Optimize for Ad Hoc Workloads faz; Observe a imagem abaixo onde temos a representação de quando o parâmetro não está habilitado.
  
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25832508/198143249-4fbcd3f8-1cd4-4d3c-a4cc-6d9deeab6018.png">
