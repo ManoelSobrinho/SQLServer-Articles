@@ -11,7 +11,7 @@ Este artigo tem como finalidade demonstrar como o parâmetro Optimize for Ad Hoc
 A imagem a seguir mostra de uma forma geral o funcionamento de uma consulta qualquer em uma determinada tabela no SQL Server. O Buffer manager é o responsável por gerenciar a troca de informação entre o HD e a memória, e dentro do Plan cache é onde ficam armazenados os planos de execução das queries.
 
 <p align="center">
-<img src="![image](https://user-images.githubusercontent.com/25832508/198142614-a4f60456-0341-4907-8db7-37e2a42c51dc.png">
+<img src="![img1](https://user-images.githubusercontent.com/25832508/198142735-2f01a60c-fad4-4776-ab37-a85a908b1e5c.png)">
 </p>
 
 
@@ -22,4 +22,5 @@ A imagem a seguir mostra de uma forma geral o funcionamento de uma consulta qual
 
 
 
+![img1](https://user-images.githubusercontent.com/25832508/198142735-2f01a60c-fad4-4776-ab37-a85a908b1e5c.png)
 
