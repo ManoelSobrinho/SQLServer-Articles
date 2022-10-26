@@ -55,7 +55,7 @@ WHERE Name = 'optimize for ad hoc workloads'
 <img src="https://user-images.githubusercontent.com/25832508/198143653-040218af-beff-404d-adc4-2e633579e23a.png">
 </p>
 
-# Como verificar se há muitas consultas Ad Hoc utilizando o chache?
+# Como verificar se há muitas consultas Ad Hoc utilizando o cache?
 
 Podemos verificar através dos seguintes scripts:
 
