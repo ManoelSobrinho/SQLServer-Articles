@@ -113,3 +113,7 @@ ORDER BY cplan.usecounts DESC
 ```TSQL
 DBCC FREEPROCCACHE
 ```
+
+# Conclusão
+
+O Optimize For Ad Hoc Workloads pode ser uma boa opção para se habilitar em servidores onde há muita incidência de Ad Hoc queries, impedindo que os planos desas queries possam causar uma pressão de memória no servidor.
