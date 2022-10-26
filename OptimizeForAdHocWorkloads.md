@@ -4,7 +4,7 @@ Este artigo tem como finalidade demonstrar como o parâmetro Optimize for Ad Hoc
 
 # O que é uma Ad Hoc query?
 
-É uma query alterada de acordo com uma necessidade específica. Imagine um usuário que vai acessar a base e fazer um select qualquer, esse select é considerado um Ad Hoc query.
+É uma query alterada de acordo com uma necessidade específica. Imagine um usuário que vai acessar a base e fazer um select qualquer, esse select é considerado uma Ad Hoc query.
 
 # Ad Hoc query e Cache
 
