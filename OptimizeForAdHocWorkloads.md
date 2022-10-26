@@ -51,10 +51,65 @@ SELECT name
 FROM sys.configurations  
 WHERE Name = 'optimize for ad hoc workloads' 
 ```
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25832508/198143653-040218af-beff-404d-adc4-2e633579e23a.png">
+</p>
 
+# Como verificar se há muitas consultas Ad Hoc utilizando o chache?
 
+Podemos verificar através dos seguintes scripts:
 
+```TSQL
+SELECT  
+AdHoc_Plan_MB, Total_Cache_MB,  
+AdHoc_Plan_MB*100.0 / Total_Cache_MB AS 'AdHoc %'  
+FROM (  
+SELECT SUM(CASE  
+WHEN objtype = 'adhoc'  
+           THEN CONVERT(BIGINT,size_in_bytes)  
+ELSE 0 END) / 1048576.0 AdHoc_Plan_MB,  
+           SUM(CONVERT(BIGINT,size_in_bytes)) / 1048576.0 Total_Cache_MB  
+FROM sys.dm_exec_cached_plans) T  
+```
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25832508/198143818-5c549b01-57f3-430c-b041-ce4d3ae8b68f.png">
+</p>
 
+Onde podemos ver a quantidade em MB de Ad Hoc plans armazenados, a quantidade total em MB armazenado em cache e a porcentagem que os Ad Hoc plans exercem sobre o total de memória no cache.
 
+E 
 
+```TSQL
+SELECT SUM(c.usecounts) AS count  
+, c.objtype  
+FROM sys.dm_exec_cached_plans AS c  
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS t  
+CROSS APPLY sys.dm_exec_query_plan(plan_handle) AS q  
+GROUP BY c.objtype
+```
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25832508/198143934-ce13ae7d-ec3c-4fe3-be59-8b77202f70f2.png">
+</p>
+
+Onde podemos ver que temos apenas quatro Ad Hoc plans armazenados em cache.
+
+# Como obter os planos que estão armazenados?
+
+```TSQL
+SELECT    cplan.usecounts  
+                , cplan.objtype  
+                , qtext.text  
+                , qplan.query_plan  
+FROM sys.dm_exec_cached_plans AS cplan 
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS qtext 
+CROSS APPLY sys.dm_exec_query_plan(plan_handle) AS qplan
+ORDER BY cplan.usecounts DESC
+```
+
+# Como limpar o cache?
+
+```TSQL
+DBCC FREEPROCCACHE
+```
