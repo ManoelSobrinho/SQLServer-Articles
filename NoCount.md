@@ -64,3 +64,5 @@ FROM [Person].[Person]
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25832508/206203374-1c44c4cd-3c37-4e6e-b268-40ff671fc111.png">
 </p>
+
+Sem contagem!
