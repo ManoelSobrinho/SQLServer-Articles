@@ -16,10 +16,15 @@ AS RANGE LEFT FOR VALUES (2020, 2021, 2022, 2023, 2024, 2025);
 Isso cria 5 partições:
 
   - <= 2020
+    
   - 2021
+    
   - 2022
+    
   - 2023
+    
   - 2024
+    
   - >= 2025
 
 ## Criar um esquema de particionamento
