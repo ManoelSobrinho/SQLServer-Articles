@@ -91,6 +91,85 @@ GROUP BY $PARTITION.pf_Tempos(Ano);
 <img src="https://github.com/user-attachments/assets/5540c262-7140-42ec-9f9d-5b72246dcd0d">
 </p>
 
+## Truncar uma partição específica
+
+Caso não seja mais necessária determinada partição, ela pode ser excluída da seguinte forma:
+
+```TSQL
+TRUNCATE TABLE Tempos WITH (PARTITIONS (3));
+-- Apaga só a partição 3 (por exemplo, 2022)
+```
+
+## Mover dados com SWITCH
+
+É possívem também mover dados de uma partição para outra tabela com o seguinte comando:
+
+```TSQL
+ALTER TABLE Tempos SWITCH PARTITION 3 TO Tempos_Arquivadas;
+```
+
+Para isso a tabela Tempos_Arquivadas deve estar criada com a mesma estrutura da tabela Tempos. Outro detalha importante, a tabela Tempos_Arquivadas não pode ser uma tabela particionada.
+
+# Filegroups diferentes
+
+Para criar a mesma tabela particionada porém em filegroups diferentes as etapas são semelhantes, a diferença é o esquema de partição que deve seguir esse exemplo:
+
+```TSQL
+CREATE PARTITION SCHEME ps_Tempos
+AS PARTITION pf_Tempos
+TO (FG_2020, FG_2021, FG_2022, FG_2023, FG_2024, FG_2025);
+```
+
+# Visualizar em qual partição está indo o registro
+
+Podemos ver com os eguinte script:
+
+```TSQL
+SELECT 
+    t.name AS Tabela,
+    i.name AS Indice,
+    p.partition_number,
+    pfv.value AS ValorLimiteParticao,
+    p.rows AS Linhas
+FROM 
+    sys.partitions p
+    JOIN sys.indexes i ON p.object_id = i.object_id AND p.index_id = i.index_id
+    JOIN sys.tables t ON i.object_id = t.object_id
+    JOIN sys.partition_schemes ps ON i.data_space_id = ps.data_space_id
+    JOIN sys.partition_functions pf ON ps.function_id = pf.function_id
+    JOIN sys.partition_range_values pfv ON pf.function_id = pfv.function_id AND pfv.boundary_id = p.partition_number
+WHERE 
+    t.name = 'Tempos' AND i.index_id <= 1  -- Foco na tabela e índice clustered
+ORDER BY 
+    p.partition_number;
+```
+
+# Tabela particionada com campo PK
+
+É totalmente possível criar uma tabela particionada com uma chave primária (PK) no SQL Server — mas existe uma exigência importante: a chave primária deve incluir a coluna de particionamento.
+
+Exemplo prático:
+
+```TSQL
+CREATE PARTITION FUNCTION pfAno (INT)
+AS RANGE LEFT FOR VALUES (2020, 2021, 2022, 2023, 2024, 2025);
+
+CREATE PARTITION SCHEME psAno
+AS PARTITION pfAno ALL TO ([PRIMARY]);
+
+```
+
+```TSQL
+CREATE TABLE Tempos (
+    Id INT NOT NULL,
+    Nome VARCHAR(100),
+    Ano INT NOT NULL,
+    CONSTRAINT PK_Tempos PRIMARY KEY (Ano, Id)  -- Ano incluído na PK!
+) ON psAno(Ano);  -- A tabela é particionada por 'Ano'
+
+```
+
+O SQL Server exige isso para garantir localidade dos dados e consistência no acesso, já que a chave primária precisa ser única em toda a tabela, e sem saber a partição correta, ele não conseguiria verificar isso de forma eficiente.
 
 # Vantagens do particionamento
 
