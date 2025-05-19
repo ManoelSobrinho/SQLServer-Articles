@@ -51,3 +51,13 @@ Backups antigos ainda funcionarão, mas durante o restore, o nome da base pode s
     - Você precisa remover a base do grupo, renomear, e reconfigurar o ambiente.
 
     - Pode causar interrupção na alta disponibilidade.
+
+## Riscos e perigos
+
+| Risco                                              | Descrição                                                                                          |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| ❌ **Desconexão de aplicações**                     | Aplicações com connection strings fixas vão falhar até serem ajustadas.                            |
+| 🔁 **Perda de integridade em jobs / dependências** | Jobs do SQL Server Agent, Linked Servers, SSIS, etc. podem referenciar o nome antigo.              |
+| 🔐 **Segurança e permissões**                      | Permissões permanecem, mas podem haver scripts automatizados vinculados ao nome da base.           |
+| 🔒 **Ambientes HA**                                | Pode interromper replicação, failover automático ou causar corrupção na configuração do Always On. |
+
