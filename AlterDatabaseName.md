@@ -1,4 +1,6 @@
-# Introdução
+# Alteração do nome de uma base de dados e suas implicações
+
+## Introdução
 
 É possível alterar o nome de uma base de dados no SQL Server? Quais os procedumentos necessários para fazer isso? Quais os possíveis problemas?
 
