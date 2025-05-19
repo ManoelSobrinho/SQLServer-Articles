@@ -26,6 +26,57 @@ ALTER DATABASE NomeAntigo MODIFY NAME = NomeNovo;
 ALTER DATABASE NomeNovo SET MULTI_USER;
 ```
 
+Com o comando abaixo você pode melhorar esse procedimento utilizando um cursor para realizar o kill de todas as sessões ativas na base e alterar o nome da mesma.
+
+```TSQL
+USE master;  
+GO  
+SET DEADLOCK_PRIORITY HIGH;
+GO
+
+DECLARE @session_id INT, @host_name VARCHAR(128), @tsql VARCHAR(2048);
+
+DECLARE cursor_sessions CURSOR LOCAL FAST_FORWARD READ_ONLY FOR
+SELECT s.session_id
+FROM sys.dm_exec_sessions s
+	INNER JOIN sys.databases AS d ON d.database_id = s.database_id
+WHERE s.database_id = DB_ID('NomeAntigo')
+
+AND s.session_id <> 57 -- sua sessao que está rodando o multi_user 
+
+OPEN cursor_sessions  
+FETCH NEXT FROM cursor_sessions INTO @session_id
+
+WHILE @@FETCH_STATUS = 0  
+BEGIN  
+
+	  BEGIN TRY
+
+      SET @tsql = ' kill ' + cast(@session_id  as varchar(64));
+
+		EXEC(@tsql);
+		--PRINT(@tsql);
+
+	  END TRY
+	  BEGIN CATCH
+		PRINT( @tsql + ' | ' + ERROR_MESSAGE());
+	  END CATCH
+
+      FETCH NEXT FROM cursor_sessions INTO @session_id
+END 
+
+CLOSE cursor_sessions  
+DEALLOCATE cursor_sessions 
+
+ALTER DATABASE NomeAntigo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+
+ALTER DATABASE NomeAntigo MODIFY NAME = NomeNovo;
+GO  
+ALTER DATABASE NomeNovo SET MULTI_USER;
+GO
+```
+
 ### Objetos dependentes
 
 - Aplicações, jobs, procedures, views, scripts, linked servers, conexões de aplicações e outros podem estar apontando para o nome antigo.
@@ -61,3 +112,14 @@ Backups antigos ainda funcionarão, mas durante o restore, o nome da base pode s
 | 🔐 **Segurança e permissões**                      | Permissões permanecem, mas podem haver scripts automatizados vinculados ao nome da base.           |
 | 🔒 **Ambientes HA**                                | Pode interromper replicação, failover automático ou causar corrupção na configuração do Always On. |
 
+## Boas práticas
+
+- Evite renomear bases em produção, especialmente em ambientes de alta disponibilidade.
+
+- Faça isso em manutenções agendadas e com validação posterior.
+
+- Comunique todos os times (infra, dev, suporte) antes da alteração.
+
+- Se for necessário, reconfigure todos os componentes de HA (Always On, log shipping, etc.) após o rename.
+
+Se você estiver em um ambiente de Always On, o recomendado mesmo é criar uma nova base com o nome desejado, restaurar um backup, e reconfigurar o grupo de disponibilidade.
